@@ -1,0 +1,115 @@
+body
+{
+    /*文本居中*/
+    text-align: center;
+    /*设置bg.jpg为背景*/
+    background-image: url("../images/bg.jpg");
+}
+#game
+{
+    /*宽度502px,高度462px;*/
+    width: 502px;
+    height: 462px;
+    /*设置外边距。*/
+    margin: 0 auto;
+    /*加边框1px，颜色#666，实线 1.none:表示没   2.solid：表示单线   3.double：表示双线   4.groove：表示凹槽   5.redge:表示皱纹   6.dotted:点线(貌似IE6下效果等同于dashed)   7.dashed:虚线*/
+    border: 1px solid #666;
+    /*边框圆角半径10px*/
+    border-radius: 10px;
+    /*背景使用table.jpg*/
+    background-image: url("../images/table.jpg");
+    /*相对定位*/
+    position: relative;
+    display: -webkit-box;
+    /*自动居于body中间*/
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+#cards
+{
+    width: 380px;
+    height: 400px;
+    /*相对定位*/
+    position: relative;
+}
+.card
+{
+    width: 80px;
+    height: 120px;
+    /*绝对定位*/
+    position: absolute;
+}
+.face
+{
+    width: 100%;
+    height: 100%;
+    border-radius:10px;
+    position: absolute;
+    /*翻面后不可见*/
+    /*隐藏被旋转的 div 元素的背面：*/
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all .3s;
+}
+.front
+{
+    background: #999 url("../images/deck.png") 0 -480px;
+    /*Z-index在使用绝对定位 position:absolute属性条件下使用才能使用。通常我们让不同的对象盒子以不同顺序重叠排列，我们就是要z-index样式属性。*/
+    z-index: 10;
+}
+.back
+{
+    background: #efefef url("../images/deck.png");
+    /*旋转的角度和方向*/
+    -webkit-transform:rotateY(-180deg);
+    z-index: 8;
+}
+/*伪类  适用于光标（鼠标指针）指向一个元素，但此元素未被激活时的样式*/
+.face:hover
+{
+    -webkit-box-shadow: 0 0 40px #aaa;
+}
+/*牌面定位样式*/
+.cardAJ
+{
+    background-position: -800px 0;
+}
+.cardAQ
+{
+    background-position: -880px 0;
+}
+.cardAK
+{
+    background-position: -960px 0;
+}
+.cardBJ
+{
+    background-position: -800px -120px;
+}
+.cardBQ
+{
+    background-position: -880px -120px;
+}
+.cardBK
+{
+    background-position: -960px -120px;
+}
+
+
+.card-flipped .front
+{
+    /*保证牌底在牌面下面，z-index值切换为小值*/
+    z-index: 8;
+    -webkit-transform: rotateY(180deg);
+}
+.card-flipped .back
+{
+    /*保证牌底在牌面上面，z-index值切换为大值*/
+    z-index: 10;
+    /*前面牌面已经翻过去，现在返回来*/
+    -webkit-transform: rotateY(0deg);
+}
+.card-removed
+{
+    /*移除牌*/
+    opacity: 0;
+}
